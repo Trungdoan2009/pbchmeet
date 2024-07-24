@@ -4,6 +4,7 @@ import useUser from "@/hooks/useUser";
 import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
 import React from "react";
 import { v4 as uuid } from "uuid";
+import { ZegoSuperBoardManager } from "zego-superboard-web";
 
 const Room = ({ params }: { params: { roomid: string } }) => {
   const { fullName } = useUser();
@@ -42,10 +43,10 @@ const Room = ({ params }: { params: { roomid: string } }) => {
       scenario: {
         mode: ZegoUIKitPrebuilt.VideoConference,
       },
-      maxUsers: 10,
+      maxUsers: 100,
     });
+    zp.addPlugins({ZegoSuperBoardManager});
   };
-
   return <div className="w-full h-screen" ref={myMeeting}></div>;
 };
 
